@@ -31,10 +31,6 @@ class MoviesView(Resource):
         movie_service.add_movie(data)
         return "", 201
 
-    def delete(self):
-        del_id = request.get_json()
-        movie_service.delete(del_id)
-        return "", 201
 
 @movie_ns.route('/<int:mid>')
 class MovieView(Resource):
@@ -51,3 +47,7 @@ class MovieView(Resource):
         data = request.get_json()
         movie_service.change_movie_partially(data, mid)
         return "", 200
+
+    def delete(self, mid):
+        movie_service.delete(mid)
+        return "", 201
